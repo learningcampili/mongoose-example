@@ -5,8 +5,7 @@ const checkAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
 
-    //console.log({ authorization });
-    //'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODRiZWJmM2NlODk5ZmU4OTQzOTI3ZSIsImlhdCI6MTY4NjQyNzczMCwiZXhwIjoxNjg2NTE0MTMwfQ.3-OYMn7lqG_YqBhv3eVip1zqYy_d4c6hgkHFTPAwlBg'
+  
 
     const token = authorization && authorization.split(" ").pop(); // se queda con el token sin bearer
 
