@@ -6,6 +6,7 @@ const handleValidator = (req, res, next) => {
     validationResult(req).throw();
     return next();
   } catch (err) {
+    console.log(err);
     throw new CustomError(err.errors[0].msg, 400);
     next();
     // res.status(400)

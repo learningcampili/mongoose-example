@@ -42,6 +42,30 @@ const register = async (req, res, next) => {
       name,
       email,
       password,
+      role: "STUDENT",
+    });
+
+    const userSaved = await user.save();
+    res.status(201).json(userSaved);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const createAdmin = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
+
+    const exists = await User.findOne({ email: email });
+    if (exists) {
+      throw new CustomError("email is already in use", 400);
+    }
+
+    const user = new User({
+      name,
+      email,
+      password,
+      role: "ADMIN",
     });
 
     const userSaved = await user.save();

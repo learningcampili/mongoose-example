@@ -22,8 +22,8 @@ UserSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["USER_ROLE", "ADMIN_ROLE", "SUPER_ROLE"],
-      default: "USER_ROLE",
+      enum: ["SUPER", "ADMIN", "TEACHER", "STUDENT"],
+      default: "STUDENT",
     },
     isGoogle: {
       type: Boolean,
@@ -38,7 +38,7 @@ UserSchema = new Schema(
     },
     isActive: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     forgotToken: {
       type: String,
@@ -71,7 +71,8 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
 };
 
 UserSchema.methods.toJSON = function () {
-  const { password, ...user } = this.toObject();
+  const { password, _id, ...user } = this.toObject();
+  user.id = this._id;
   return user;
 };
 

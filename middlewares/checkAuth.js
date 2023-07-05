@@ -5,8 +5,6 @@ const checkAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
 
-  
-
     const token = authorization && authorization.split(" ").pop(); // se queda con el token sin bearer
 
     if (!token) {
